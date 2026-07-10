@@ -10,21 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
-    // Find employee by email
-    Optional<Employee> findByEmail(String email);
 
-    // Find employees by department
-    List<Employee> findByDepartment(String department);
-
-    // Find employees by active status
-    List<Employee> findByActive(Boolean active);
-
-    // Check if email already exists
-    boolean existsByEmail(String email);
-
-    // Delete employee by email
-    void deleteByEmail(String email);
-
-    // Search employees by name
-    List<Employee> findByEmployeeNameContainingIgnoreCase(String employeeName);
 }
