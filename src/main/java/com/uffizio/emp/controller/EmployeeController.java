@@ -14,33 +14,39 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
+
         this.employeeService = employeeService;
     }
+
     @PostMapping
     public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
         return new ResponseEntity<>(
                 employeeService.createEmployee(employeeDto),
                 HttpStatus.CREATED);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(
             @PathVariable Long id) {
 
         return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
+
     @GetMapping
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
 
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(
             @PathVariable Long id,
-             @RequestBody EmployeeDto employeeDto) {
+            @RequestBody EmployeeDto employeeDto) {
 
         return ResponseEntity.ok(
                 employeeService.updateEmployee(id, employeeDto));
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(
             @PathVariable Long id) {

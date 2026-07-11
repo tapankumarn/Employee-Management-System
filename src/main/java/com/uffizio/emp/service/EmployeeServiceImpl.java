@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
 
@@ -26,7 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         Employee savedEmployee = employeeRepository.save(employee);
 
-        return modelMapper.map(savedEmployee, EmployeeDto.class);    }
+        return modelMapper.map(savedEmployee, EmployeeDto.class);
+    }
 
     @Override
     public EmployeeDto getEmployeeById(Long id) {
