@@ -34,7 +34,6 @@ public class Employee {
     @Column(length = 100)
     private String designation;
 
-    @Column(precision = 10, scale = 2)
     private double salary;
 
     @Column(name = "joining_date")
