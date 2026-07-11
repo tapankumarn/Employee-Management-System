@@ -2,6 +2,7 @@ package com.uffizio.emp.service;
 
 import com.uffizio.emp.dto.EmployeeDto;
 import com.uffizio.emp.entity.Employee;
+import com.uffizio.emp.exception.ResourceNotFoundException;
 import com.uffizio.emp.repo.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee = modelMapper.map(employeeDto, Employee.class);
-
         Employee savedEmployee = employeeRepository.save(employee);
 
         return modelMapper.map(savedEmployee, EmployeeDto.class);
@@ -32,7 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee Not Found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Employee not found with id : " + id));
 
         return modelMapper.map(employee, EmployeeDto.class);
     }
@@ -67,7 +68,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee Not Found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Employee not found with id : " + id));
 
         employeeRepository.delete(employee);
     }
